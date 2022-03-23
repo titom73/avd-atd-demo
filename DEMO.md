@@ -42,6 +42,15 @@ all:
         ansible_ssh_pass: < set your password here from your webinterface >
 ```
 
+If your lab is running vEOS-LAB instance instead of cEOS-LAB, you have to change managment interface in your [inventory (ATD_LAB.yml)](atd-inventory/group_vars/ATD_LAB.yml)
+
+```yaml
+# If ATD is running cEOS, management interface is Management0
+# If ATD is running vEOS, management interface is Management1
+mgmt_interface: Management0
+mgmt_interface_vrf: default
+```
+
 ## 3. Provision ATD
 
 To emulate ZTP environment, we will move all devices from their current containers to a dedicated one named `STAGING` to mimic `undefined` container.
