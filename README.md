@@ -39,21 +39,27 @@ The ATD Lab topology consists of 2 Spines, 4 Leafs and 2 Hosts, as shown below.
 
 Connect to your ATD Lab environment.  If you need an ATD Lab instance, please contact your local account team.  Once connected to the ATD Lab instance, select the Programmability IDE.  This container is built with all the necessary requirements and python modules to run AVD playbooks.
 
+__Configure environment__
 
 ```shell
-# Setup your git global config (optional)
-git config --global user.email "you@example.com"
-git config --global user.name "Your Name"
-
-# Run Script to setup environment
-curl -fsSL https://get.avd.sh/atd/install.sh | sh
-
 # Move to directory
-cd labfiles/arista-ansible/atd-avd
+cd labfiles/
+
+# Setup your git global config (optional)
+git clone https://github.com/titom73/avd-atd-demo.git
+
+# Install or update collection requirements
+ansible-galaxy collection install --force -r collections.yml
 
 # Update Inventory with Lab Credentials
-edit credentials in vscode: atd-avd/atd-inventory/inventory.yml
+edit credentials in vscode: avd-atd-demo/atd-inventory/inventory.yml
+```
 
+> Note: It is important to update credentials in [your inventory](./atd-inventory/inventory.yml) as it is configured per lab instance
+
+__Run ansible playbooks__
+
+```shell
 # Run Playbook to Prepare CloudVision for AVD
 $ ansible-playbook playbooks/atd-prepare-lab.yml
 
@@ -61,7 +67,11 @@ $ ansible-playbook playbooks/atd-prepare-lab.yml
 
 # Run Playbook to Deploy AVD Setup
 $ ansible-playbook playbooks/atd-fabric-deploy.yml
+```
 
+__Validate Fabric State and snapshot status__ (Optional)
+
+```shell
 # Execute Tasks in CVP manually
 
 # Run audit playbook to validate Fabric states
