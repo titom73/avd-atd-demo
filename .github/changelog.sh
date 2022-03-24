@@ -33,7 +33,7 @@ MAIN_TYPES=(FEAT FIX PERF REFACTOR DOCS DOC)
 
 #* Types that will be displayed under the category of other changes
 local -a OTHER_TYPES
-OTHER_TYPES=(MAKE TEST STYLE CI OTHER MISC LICENSE)
+OTHER_TYPES=(MAKE TEST STYLE OTHER MISC LICENSE)
 
 #* Commit types that don't appear in $MAIN_TYPES nor $OTHER_TYPES
 #* will not be displayed and will simply be ignored.
